@@ -1,42 +1,49 @@
 var stompClient = null;
-var name = "Stef";
-var password
-
-function signin() {
-	name = document.getElementById("username").value;
-	password = document.getElementById("password").value;
-	window.location.href = 'time.html';
-	document.getElementById("welcome").innerHTML = name;
-}
-
-function setConnected(connected) {
-	$("#connect").prop("disabled", connected);
-	$("#disconnected").prop("disabled", !connected);
-}
 
 function connect() {
 	var socket = new SockJS('/backend');
 	stompClient = Stomp.over(socket);
-	
+			
 	stompClient.connect({}, function(frame) {
-		setConnected(true);
-		
-		stompClient.subscribe('/topic/response', function(message) {
-			console.log(message);
-		});
+	console.log('Connected: ' + frame);
+		stompClient.subscribe('/topic/response', function(message) {console.log(message.body);});
 	});
 }
+window.onload = connect();
 
-function disconnect() {
-	if (stompClient !== null) {
-		stompClient.disconnect();
-	}
-	
-	setConnected(false);
-	console.log("Disconnected");
+//----------------------------------------------
+
+function signin() {
+//	versenden login daten in das Backend via Websocket
+	console.log("signin");
 }
 
+function kommen() {
+//	versenden message mit type kommen und timestamp
+	console.log("kommen");
+}
 
+function pause() {
+	console.log("pause");
+}
 
+function gehen() {
+	console.log("gehen");
+}
 
-window.onload = connect();
+//----------------------------------------------
+
+$(function() {
+	$("#signin").click(function() {
+		signin();
+	});
+	$("#kommen").click(function() {
+		kommen();
+	});
+	$("#pause").click(function() {
+		pause();
+	});
+	$("#gehen").click(function() {
+		gehen();
+	});
+});

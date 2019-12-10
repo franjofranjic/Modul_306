@@ -1,37 +1,25 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8">
 		<title>Time4You</title>
-		<script src="js/app.js"></script>
-		<script src="/webjars/sockjs-client/sockjs.min.js"></script>
-		<script src="/webjars/stomp-websocket/2.3.3/stomp.min.js"></script>
-		<script src="/webjars/jquery/3.0.0/jquery.min.js"></script>
-		<link rel="stylesheet" href="css/style.css" >
+		<script src='/webjars/jquery/3.1.0/jquery.min.js'></script>
+		<script src='/webjars/sockjs-client/sockjs.min.js'></script>
+		<script src='/webjars/stomp-websocket/stomp.min.js'></script>
+		<script src='/js/app.js'></script>
+		
 	</head>
+
 	
 	<body>
-		
-		<header>
-			<h1>Time4You</h1>
-			<img src="img/logo.jpg" alt="logo">
-		</header>
-		
-		<main>
-			<div>
-				<form id="signin">
-					<label>username</label>
-					<input id="username" type="text" name="username" placeholder="username">
-					<label>password</label>
-					<input id="password" type="password" name="password" placeholder="password">
-					<input type="button" value="Sign in" onclick="signin()">
-				</form>
-			</div>
-		</main>
-		
-		<footer>
-			<h2>created by Franjo Franjic</h2>
-		</footer>
-		
+		<div>
+			<form>
+				<label>username</label>
+				<input type="text" placeholder="username" name="username">
+				<label>Password</label>
+				<input type="password" name="passwords">
+				<input type="submit" value="Sign in" id="signin">
+			</form>
+		</div>
 	</body>
+
 </html>

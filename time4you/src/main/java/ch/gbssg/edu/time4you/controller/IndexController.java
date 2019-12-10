@@ -21,7 +21,7 @@ public class IndexController {
 	@Scheduled(fixedRate = 5000) 
 	public void heartbeat() {
 		String message = "Hallo";
+		System.out.println(message);
 		this.template.convertAndSend("/topic/response", message);
 	}
-	
 }
