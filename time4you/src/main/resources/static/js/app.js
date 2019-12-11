@@ -1,4 +1,5 @@
 var stompClient = null;
+var username = null;
 
 function connect() {
 	var socket = new SockJS('/backend');
@@ -14,21 +15,41 @@ window.onload = connect();
 //----------------------------------------------
 
 function signin() {
-//	versenden login daten in das Backend via Websocket
-	console.log("signin");
+	
+	username = "Hans";
+	password = "Hallo12345";
+	message = "{\"username\": \""+username+"\", \"password\": \""+password+"\"}"
+	console.log(message);
+	
+	stompClient.send("/app/signin",{}, message)
 }
 
 function kommen() {
-//	versenden message mit type kommen und timestamp
-	console.log("kommen");
+
+	
+	message = "{\"username\": \""+username+"\", \"time\": \""+Date.now()+"\"}"
+	console.log(message);
+	document.getElementById("lastAction").innerHTML = "Gekommen: " + ;
+	
+	stompClient.send("/app/kommen",{}, message)
 }
 
 function pause() {
-	console.log("pause");
+	
+	message = "{\"username\": \""+username+"\", \"time\": \""+Date.now()+"\"}";
+	console.log(message);
+	document.getElementById("lastAction").innerHTML = "Pause: " + ;
+	
+	stompClient.send("/app/pause",{}, message)
 }
 
 function gehen() {
-	console.log("gehen");
+	
+	message = "{\"username\": \""+username+"\", \"action\": \"gehen\", \"time\": \""+Date.now()+"\"}";
+	console.log(message);
+	document.getElementById("lastAction").innerHTML = "Gegangen: " + ;
+	
+	stompClient.send("/app/gehen",{}, message)
 }
 
 //----------------------------------------------

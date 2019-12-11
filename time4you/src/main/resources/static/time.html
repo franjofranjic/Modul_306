@@ -2,6 +2,8 @@
 <html>
 	<head>
 		<title>Time4You</title>
+		<link href="/css/style.css" rel="stylesheet" type="text/css" />
+		<link href="/css/time.css" rel="stylesheet" type="text/css" />
 		<script src='/webjars/jquery/3.1.0/jquery.min.js'></script>
 		<script src='/webjars/sockjs-client/sockjs.min.js'></script>
 		<script src='/webjars/stomp-websocket/stomp.min.js'></script>
@@ -11,18 +13,22 @@
 	
 	<body>
 	
-		<div>
-			<h2>12:59:59</h2>
-			<input type="button" value="Kommen" id="kommen">
-			<input type="button" value="Pause" id="pause">
-			<input type="button" value="Gehen" id="gehen">
-		</div>
-		
-		<div>
-			<h2>Gekommen: 8:00:00</h2>
-			<div></div>
-		</div>
+		<main>
+			<div id="section-1">	
+				<a id="778534583"></a><script src="https://www.uhr-homepage.de/data.php?i=778534583&h=70&w=140" type="text/javascript"></script>
+				<br>
+				<input type="button" value="Kommen" id="kommen">
+				<input type="button" value="Pause" id="pause">
+				<input type="button" value="Gehen" id="gehen">
+			</div>
+			
+			<div id="section-2">
+				<h2 id="lastAction">Gekommen: 8:00:00</h2>
+				<div id="Duration">
+					<div id="timedone"></div>
+				</div>
+			</div>
+		</main>
 		
 	</body>
-
 </html>
