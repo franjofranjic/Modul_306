@@ -1,5 +1,37 @@
 html, body {
-	background-color: grey;
+	background-color: #131313;
 }
+
+label, h1, h2, p {
+	color: white;
+}
+
+input {
+	background-color: #131313;
+	width: 200px;
+	border-radius: 10px;
+	color: white;
+	height: 30px;
+	font-size: 100%;
+}
+
+#signin {
+	background-color: blue;
+	border: solid blue 1px;
+}
+
+main {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+}
+
 
 

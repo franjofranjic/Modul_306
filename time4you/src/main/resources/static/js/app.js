@@ -18,7 +18,7 @@ function signin() {
 	
 	username = "Hans";
 	password = "Hallo12345";
-	message = "{\"username\": \""+username+"\", \"password\": \""+password+"\"}"
+	message = "{\"username\": \""+username+"\", \"password\": \""+password+"\"}";
 	console.log(message);
 	
 	stompClient.send("/app/signin",{}, message)
@@ -27,9 +27,9 @@ function signin() {
 function kommen() {
 
 	
-	message = "{\"username\": \""+username+"\", \"time\": \""+Date.now()+"\"}"
+	message = "{\"username\": \""+username+"\", \"time\": \""+Date.now()+"\"}";
 	console.log(message);
-	document.getElementById("lastAction").innerHTML = "Gekommen: " + ;
+	document.getElementById("lastAction").innerHTML = "Gekommen: " + "";
 	
 	stompClient.send("/app/kommen",{}, message)
 }
@@ -38,7 +38,7 @@ function pause() {
 	
 	message = "{\"username\": \""+username+"\", \"time\": \""+Date.now()+"\"}";
 	console.log(message);
-	document.getElementById("lastAction").innerHTML = "Pause: " + ;
+	document.getElementById("lastAction").innerHTML = "Pause: " + "";
 	
 	stompClient.send("/app/pause",{}, message)
 }
@@ -47,7 +47,7 @@ function gehen() {
 	
 	message = "{\"username\": \""+username+"\", \"action\": \"gehen\", \"time\": \""+Date.now()+"\"}";
 	console.log(message);
-	document.getElementById("lastAction").innerHTML = "Gegangen: " + ;
+	document.getElementById("lastAction").innerHTML = "Gegangen: " + "";
 	
 	stompClient.send("/app/gehen",{}, message)
 }
