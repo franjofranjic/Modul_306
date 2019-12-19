@@ -7,21 +7,31 @@ function connect() {
 			
 	stompClient.connect({}, function(frame) {
 	console.log('Connected: ' + frame);
-		stompClient.subscribe('/topic/response', function(message) {console.log(message.body);});
+		stompClient.subscribe('/topic/response', function(message) {
+				onmessage(message.body);
+			});
 	});
 }
 window.onload = connect();
 
 //----------------------------------------------
 
+function onmessage(message) {
+	if (message === "failure") {
+		document.getElementById("failure").innerHTML = "falscher Benutzername oder falsches Passwort!";
+	}else if(message === "succes"){
+		document.getElementById("failure").innerHTML = "";
+		window.location.href = "time.html";
+	}
+}
+
 function signin() {
 	
-	username = "Hans";
-	password = "Hallo12345";
+	username = document.getElementById("username").value;
+	password = document.getElementById("password").value;
 	message = "{\"username\": \""+username+"\", \"password\": \""+password+"\"}";
-	console.log(message);
-	
-	stompClient.send("/app/signin",{}, message)
+	stompClient.send("/app/signin",{}, message);
+
 }
 
 function kommen() {
@@ -29,7 +39,14 @@ function kommen() {
 	
 	message = "{\"username\": \""+username+"\", \"time\": \""+Date.now()+"\"}";
 	console.log(message);
-	document.getElementById("lastAction").innerHTML = "Gekommen: " + "";
+	var today = new Date();
+	var hours = today.getHours();
+	var minutes = today.getMinutes();
+	if (minutes < 10 ) {
+		minutes = "0" + minutes;
+	}
+	
+	document.getElementById("lastAction").innerHTML = "Gekommen: " +hours +":"+minutes;
 	
 	stompClient.send("/app/kommen",{}, message)
 }
@@ -38,7 +55,15 @@ function pause() {
 	
 	message = "{\"username\": \""+username+"\", \"time\": \""+Date.now()+"\"}";
 	console.log(message);
-	document.getElementById("lastAction").innerHTML = "Pause: " + "";
+	var today = new Date();
+	var hours = today.getHours();
+	var minutes = today.getMinutes();
+	if (minutes < 10 ) {
+		minutes = "0" + minutes;
+	}
+	
+		
+	document.getElementById("lastAction").innerHTML = "Pause: " +hours +":"+minutes;
 	
 	stompClient.send("/app/pause",{}, message)
 }
@@ -47,9 +72,20 @@ function gehen() {
 	
 	message = "{\"username\": \""+username+"\", \"action\": \"gehen\", \"time\": \""+Date.now()+"\"}";
 	console.log(message);
-	document.getElementById("lastAction").innerHTML = "Gegangen: " + "";
+	var today = new Date();
+	var hours = today.getHours();
+	var minutes = today.getMinutes();
+	if (minutes < 10 ) {
+		minutes = "0" + minutes;
+	}
+	
+	document.getElementById("lastAction").innerHTML = "Gegangen: " +hours +":"+minutes;
 	
 	stompClient.send("/app/gehen",{}, message)
+}
+
+function projekte() {
+	window.location.href = "projekte.html";
 }
 
 //----------------------------------------------
@@ -66,5 +102,8 @@ $(function() {
 	});
 	$("#gehen").click(function() {
 		gehen();
+	});
+	$("#projekte").click(function() {
+		projekte();
 	});
 });
